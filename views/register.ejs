@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LandTech — Register Deed / দলিল নিবন্ধন</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Register a Deed <span class="bn">/ দলিল নিবন্ধন করুন</span></h1>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+
+    <form method="POST" action="/register">
+      <label>Owner Name <span class="bn">/ মালিকের নাম</span></label>
+      <input type="text" name="owner_name" required>
+
+      <label>Plot No. <span class="bn">/ দাগ নম্বর</span></label>
+      <input type="text" name="plot_no" required>
+
+      <label>Khatian No. <span class="bn">/ খতিয়ান নম্বর</span></label>
+      <input type="text" name="khatian_no" required>
+
+      <label>Mouza <span class="bn">/ মৌজা</span></label>
+      <input type="text" name="mouza" required>
+
+      <button type="submit">Register & Generate QR</button>
+    </form>
+
+    <p class="nav-link"><a href="/verify">Go to Verify Page →</a></p>
+  </div>
+</body>
+</html>

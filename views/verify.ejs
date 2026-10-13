@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LandTech — Verify Deed / দলিল যাচাই</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Verify a Deed <span class="bn">/ দলিল যাচাই করুন</span></h1>
+
+    <form method="POST" action="/verify">
+      <label>Deed ID</label>
+      <input type="text" name="id" required placeholder="Paste Deed ID or scan QR">
+      <button type="submit">Verify</button>
+    </form>
+
+    <% if (result) { %>
+      <% if (result.status === 'VERIFIED') { %>
+        <div class="status verified">
+          ✅ VERIFIED — This deed is authentic and untampered.
+        </div>
+      <% } else if (result.status === 'TAMPERED') { %>
+        <div class="status tampered">
+          ❌ TAMPERED — This deed's data does not match its original hash/signature.
+        </div>
+      <% } else { %>
+        <div class="status not-found">
+          ⚠️ NOT FOUND — No deed exists with this ID.
+        </div>
+      <% } %>
+
+      <% if (result.deed) { %>
+        <p><strong>Owner:</strong> <%= result.deed.owner_name %></p>
+        <p><strong>Plot No.:</strong> <%= result.deed.plot_no %></p>
+        <p><strong>Khatian No.:</strong> <%= result.deed.khatian_no %></p>
+        <p><strong>Mouza:</strong> <%= result.deed.mouza %></p>
+      <% } %>
+    <% } %>
+
+    <p class="nav-link"><a href="/register">← Back to Register</a></p>
+  </div>
+</body>
+</html>

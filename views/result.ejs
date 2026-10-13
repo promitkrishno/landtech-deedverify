@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Deed Registered</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="success">✅ Deed Registered Successfully</h1>
+
+    <p><strong>Deed ID:</strong> <%= deed.id %></p>
+    <p><strong>Owner:</strong> <%= deed.owner_name %></p>
+    <p><strong>Plot No.:</strong> <%= deed.plot_no %></p>
+    <p><strong>Khatian No.:</strong> <%= deed.khatian_no %></p>
+    <p><strong>Mouza:</strong> <%= deed.mouza %></p>
+    <p><strong>Record Hash:</strong> <code><%= deed.record_hash %></code></p>
+
+    <h2>Scan to Verify</h2>
+    <img src="<%= qrImage %>" alt="Deed QR Code" class="qr-image">
+
+    <p class="nav-link">
+      <a href="/register">Register Another</a> |
+      <a href="/verify">Go to Verify Page</a>
+    </p>
+  </div>
+</body>
+</html>
