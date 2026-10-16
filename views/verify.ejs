@@ -35,6 +35,7 @@
         <p><strong>Plot No.:</strong> <%= result.deed.plot_no %></p>
         <p><strong>Khatian No.:</strong> <%= result.deed.khatian_no %></p>
         <p><strong>Mouza:</strong> <%= result.deed.mouza %></p>
+        <p><strong>Ownership Share:</strong> <%= (result.deed.ownership_share * 100).toFixed(0) %>%</p>
       <% } %>
     <% } %>
 

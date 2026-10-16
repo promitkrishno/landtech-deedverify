@@ -26,6 +26,12 @@
       <label>Mouza <span class="bn">/ মৌজা</span></label>
       <input type="text" name="mouza" required>
 
+      <label>Ownership Share <span class="bn">/ মালিকানার অংশ</span></label>
+      <input type="number" name="ownership_share" step="0.01" min="0.01" max="1" value="1" required>
+      <p class="hint">Use 1 for full ownership, 0.5 for a half-share co-ownership, etc.</p>
+
+      
+
       <button type="submit">Register & Generate QR</button>
     </form>
 

@@ -1,4 +1,5 @@
 // routes/deeds.js
+const { validateParcelRegistration } = require('../crypto/dedup');
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
@@ -14,25 +15,31 @@ router.get('/register', (req, res) => {
 // POST /register → create a new deed, return QR code
 router.post('/register', async (req, res) => {
   try {
-    const { owner_name, plot_no, khatian_no, mouza } = req.body;
+    const { owner_name, plot_no, khatian_no, mouza, ownership_share } = req.body;
 
     if (!owner_name || !plot_no || !khatian_no || !mouza) {
       return res.status(400).render('register', { error: 'All fields are required.' });
     }
 
+    const share = ownership_share ? parseFloat(ownership_share) : 1.0;
+
+    const check = validateParcelRegistration({ mouza, khatian_no, plot_no, ownership_share: share });
+    if (!check.allowed) {
+      return res.status(409).render('register', { error: check.reason });
+    }
+
     const id = uuidv4();
-    const deed = buildNewDeedRecord({ id, owner_name, plot_no, khatian_no, mouza });
+    const deed = buildNewDeedRecord({ id, owner_name, plot_no, khatian_no, mouza, ownership_share: share });
 
     db.prepare(`
-      INSERT INTO deeds (id, owner_name, plot_no, khatian_no, mouza, record_hash, prev_hash, signature, created_at)
-      VALUES (@id, @owner_name, @plot_no, @khatian_no, @mouza, @record_hash, @prev_hash, @signature, @created_at)
+      INSERT INTO deeds (id, owner_name, plot_no, khatian_no, mouza, ownership_share, record_hash, prev_hash, signature, created_at)
+      VALUES (@id, @owner_name, @plot_no, @khatian_no, @mouza, @ownership_share, @record_hash, @prev_hash, @signature, @created_at)
     `).run(deed);
 
-    // QR encodes just the deed ID — verify route looks everything else up from the DB
     const qrPayload = JSON.stringify({ id: deed.id });
     const qrImage = await QRCode.toDataURL(qrPayload);
 
-    res.render('result', { deed, qrImage });
+    res.render('result', { deed, qrImage, dedupNote: check.reason });
   } catch (err) {
     console.error(err);
     res.status(500).render('register', { error: 'Something went wrong. Please try again.' });

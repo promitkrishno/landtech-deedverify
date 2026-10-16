@@ -14,7 +14,11 @@
     <p><strong>Plot No.:</strong> <%= deed.plot_no %></p>
     <p><strong>Khatian No.:</strong> <%= deed.khatian_no %></p>
     <p><strong>Mouza:</strong> <%= deed.mouza %></p>
+    <p><strong>Ownership Share:</strong> <%= (deed.ownership_share * 100).toFixed(0) %>%</p>
     <p><strong>Record Hash:</strong> <code><%= deed.record_hash %></code></p>
+      <% if (typeof dedupNote !== 'undefined' && dedupNote) { %>
+              <p class="dedup-note"><%= dedupNote %></p>
+                      <% } %>
 
     <h2>Scan to Verify</h2>
     <img src="<%= qrImage %>" alt="Deed QR Code" class="qr-image">

@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS deeds (
   plot_no TEXT NOT NULL,
   khatian_no TEXT NOT NULL,
   mouza TEXT NOT NULL,
+  ownership_share REAL NOT NULL DEFAULT 1.0,
   record_hash TEXT NOT NULL,
   prev_hash TEXT,
   signature TEXT NOT NULL,

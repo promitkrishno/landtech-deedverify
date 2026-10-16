@@ -45,3 +45,5 @@ button {
 .tampered { background: #f8d7da; color: #721c24; }
 .not-found { background: #fff3cd; color: #856404; }
 .nav-link { margin-top: 20px; font-size: 14px; }
+.hint { font-size: 13px; color: #666; margin-top: 4px; }
+.dedup-note { margin-top: 15px; padding: 10px; background: #eef6ff; border-radius: 6px; font-size: 14px; color: #1a4a7a; }
