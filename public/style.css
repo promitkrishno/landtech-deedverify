@@ -47,3 +47,97 @@ button {
 .nav-link { margin-top: 20px; font-size: 14px; }
 .hint { font-size: 13px; color: #666; margin-top: 4px; }
 .dedup-note { margin-top: 15px; padding: 10px; background: #eef6ff; border-radius: 6px; font-size: 14px; color: #1a4a7a; }
+
+/* ===== Government-style landing page ===== */
+:root {
+  --bd-green: #00572b;
+  --bd-green-dark: #003e1d;
+  --bd-red: #e2231a;
+  --bd-cream: #fbf9f3;
+  --bd-text: #1f2421;
+  --bd-muted: #5c6b63;
+  --bd-border: #dcd6c4;
+}
+
+.gov-page {
+  font-family: 'Noto Sans Bengali', 'Noto Sans', 'Segoe UI', sans-serif;
+  background: var(--bd-cream);
+  margin: 0;
+  color: var(--bd-text);
+}
+
+.lang-en { display: none; }
+html.lang-mode-en .lang-bn { display: none; }
+html.lang-mode-en .lang-en { display: inline; }
+
+.gov-topbar {
+  background: var(--bd-green-dark);
+  color: #fff;
+  font-size: 13px;
+  padding: 6px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.lang-switch {
+  background: var(--bd-red);
+  color: #fff;
+  border: none;
+  padding: 3px 12px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.gov-header { background: var(--bd-green); color: #fff; padding: 16px 20px; }
+.gov-brand { display: flex; align-items: center; gap: 12px; max-width: 900px; margin: 0 auto; }
+.gov-badge {
+  background: #fff; color: var(--bd-green); border-radius: 50%;
+  width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.gov-brand-text { display: flex; flex-direction: column; }
+.gov-title { font-size: 19px; font-weight: 700; }
+.gov-subtitle { font-size: 12.5px; opacity: 0.85; }
+
+.gov-hero { max-width: 900px; margin: 0 auto; padding: 40px 20px 30px; text-align: center; }
+.gov-hero h1 { font-size: 26px; color: var(--bd-green-dark); margin-bottom: 12px; }
+.hero-sub { font-size: 14.5px; color: var(--bd-muted); max-width: 600px; margin: 0 auto 24px; }
+.hero-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.btn-primary, .btn-secondary {
+  display: inline-block; padding: 12px 24px; border-radius: 6px;
+  text-decoration: none; font-weight: 600; font-size: 14.5px;
+}
+.btn-primary { background: var(--bd-green); color: #fff; }
+.btn-secondary { background: #fff; color: var(--bd-green); border: 1.5px solid var(--bd-green); }
+
+.gov-services { max-width: 900px; margin: 0 auto; padding: 10px 20px 30px; }
+.gov-services h2, .gov-notice h2 {
+  font-size: 17px; color: var(--bd-green-dark); border-bottom: 2px solid var(--bd-red);
+  display: inline-block; padding-bottom: 4px; margin-bottom: 18px;
+}
+.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+.service-card {
+  background: #fff; border: 1px solid var(--bd-border); border-radius: 8px; padding: 18px;
+  text-decoration: none; color: var(--bd-text); display: flex; flex-direction: column; gap: 6px;
+  position: relative; transition: box-shadow 0.15s;
+}
+.service-card:not(.is-disabled):hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-color: var(--bd-green); }
+.service-icon { color: var(--bd-green); }
+.service-name { font-weight: 700; font-size: 14.5px; }
+.service-desc { font-size: 12.5px; color: var(--bd-muted); }
+.service-card.is-disabled { opacity: 0.6; cursor: default; }
+.coming-soon {
+  position: absolute; top: 10px; right: 10px; background: var(--bd-red); color: #fff;
+  font-size: 10px; padding: 2px 8px; border-radius: 10px;
+}
+
+.gov-notice { max-width: 900px; margin: 0 auto; padding: 10px 20px 30px; }
+.notice-list { list-style: none; padding: 0; margin: 0; }
+.notice-list li {
+  background: #fff; border-left: 3px solid var(--bd-red); padding: 10px 14px;
+  margin-bottom: 8px; font-size: 13.5px; border-radius: 0 4px 4px 0;
+}
+
+.gov-footer { background: var(--bd-green-dark); color: #fff; text-align: center; padding: 18px 20px; font-size: 12.5px; margin-top: 20px; }
+.gov-footer-event { margin: 0 0 4px; font-weight: 600; }
+.gov-footer-sub { margin: 0; opacity: 0.8; font-size: 11.5px; }

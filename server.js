@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', deedsRouter);
 
 app.get('/', (req, res) => {
-  res.redirect('/register');
+  res.render('landing');
 });
 
 app.listen(PORT, () => {
